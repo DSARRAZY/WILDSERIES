@@ -2,7 +2,12 @@
 
 {% block body %}
     <h1> Bienvenue !</h1>
+    <h1> QUETE 8 : </h1>
+    <br>
+    <a href="{{ path('show_category', { 'categoryName': "horreur" }) }}"> L'URL est fonctionnelle et renvoie bien les 3 dernières séries liées à la catégorie "horreur".</a>
+   </p>
+    <br>
+    <a href="{{ path('wild_show', { 'slug': "walking-dead" }) }}">L'URL renvoi sur la page de la série "Walking Dead"</a>
 {% endblock %}
-
 
 

@@ -8,9 +8,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-/**
- * @Route(name="wild_")
- */
 Class WildController extends AbstractController
 {
     /**
@@ -71,7 +68,7 @@ Class WildController extends AbstractController
 
     /**
      * @param string $categoryName
-     * @Route("/wild/category/{categoryName}", name="show_category")
+     * @Route("/category/{categoryName}", name="show_category")
      * @return Response
      */
     public function showByCategory(string $categoryName) :Response

@@ -1,18 +1,9 @@
 {% extends 'base.html.twig' %}
 
-{% block body %}
-    <h1> Bienvenue !</h1>
-    <h1> QUETE 9 : </h1>
-    <br>
-    {#<a href="{{ path('show_category', { 'categoryName': "horreur" }) }}"> L'URL est fonctionnelle et renvoie bien les 3 dernières séries liées à la catégorie "horreur".</a>
-   <br>
-    {% for program in programs %}
-        <div>
-            <li><a href="/program/{{ program.title }}">{{ loop.index }} / {{ program.title }} - Catégorie : {{ program.category.name }}</a></li>
-        </div>
-    {% else %}
-        Aucune série trouvée.
-    {% endfor %}#}
-{% endblock %}
-
-
+ {% block body %}
+     <h1> Bienvenue !</h1>
+     <h1> QUETE 9 : </h1>
+     <br>
+     <a href="{{ path('show_category', { 'categoryName': "horreur" }) }}"> L'URL est fonctionnelle et renvoie bien les 3 dernières séries liées à la catégorie "horreur".</a>
+     </p>
+ {% endblock %}

@@ -40,16 +40,6 @@ class Program
     private $category;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $country;
-
-    /**
-     * @ORM\Column(type="integer", nullable=true)
-     */
-    private $year;
-
-    /**
      * @ORM\OneToMany(targetEntity="App\Entity\Season", mappedBy="program")
      */
     private $seasons;
@@ -107,30 +97,6 @@ class Program
         return $this;
     }
 
-    public function getCountry(): ?string
-    {
-        return $this->country;
-    }
-
-    public function setCountry(?string $country): self
-    {
-        $this->country = $country;
-
-        return $this;
-    }
-
-    public function getYear(): ?int
-    {
-        return $this->year;
-    }
-
-    public function setYear(?int $year): self
-    {
-        $this->year = $year;
-
-        return $this;
-    }
-
     /**
      * @return Collection|Season[]
      */
@@ -161,4 +127,5 @@ class Program
 
         return $this;
     }
+
 }

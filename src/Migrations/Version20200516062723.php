@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20200514132254 extends AbstractMigration
+final class Version20200516062723 extends AbstractMigration
 {
     public function getDescription() : string
     {
@@ -24,10 +24,14 @@ final class Version20200514132254 extends AbstractMigration
 
         $this->addSql('ALTER TABLE season DROP FOREIGN KEY FK_F0E45BA93EB8070A');
         $this->addSql('DROP INDEX IDX_F0E45BA93EB8070A ON season');
-        $this->addSql('ALTER TABLE season DROP program_id');
+        $this->addSql('ALTER TABLE season CHANGE program_id program_id_id INT NOT NULL');
+        $this->addSql('ALTER TABLE season ADD CONSTRAINT FK_F0E45BA9E12DEDA1 FOREIGN KEY (program_id_id) REFERENCES program (id)');
+        $this->addSql('CREATE INDEX IDX_F0E45BA9E12DEDA1 ON season (program_id_id)');
         $this->addSql('ALTER TABLE episode DROP FOREIGN KEY FK_DDAA1CDA4EC001D1');
         $this->addSql('DROP INDEX IDX_DDAA1CDA4EC001D1 ON episode');
-        $this->addSql('ALTER TABLE episode DROP season_id');
+        $this->addSql('ALTER TABLE episode CHANGE season_id season_id_id INT NOT NULL');
+        $this->addSql('ALTER TABLE episode ADD CONSTRAINT FK_DDAA1CDA68756988 FOREIGN KEY (season_id_id) REFERENCES season (id)');
+        $this->addSql('CREATE INDEX IDX_DDAA1CDA68756988 ON episode (season_id_id)');
     }
 
     public function down(Schema $schema) : void
@@ -35,10 +39,14 @@ final class Version20200514132254 extends AbstractMigration
         // this down() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
-        $this->addSql('ALTER TABLE episode ADD season_id INT NOT NULL');
-        $this->addSql('ALTER TABLE episode ADD CONSTRAINT FK_DDAA1CDA4EC001D1 FOREIGN KEY (season_id) REFERENCES episode (id)');
+        $this->addSql('ALTER TABLE episode DROP FOREIGN KEY FK_DDAA1CDA68756988');
+        $this->addSql('DROP INDEX IDX_DDAA1CDA68756988 ON episode');
+        $this->addSql('ALTER TABLE episode CHANGE season_id_id season_id INT NOT NULL');
+        $this->addSql('ALTER TABLE episode ADD CONSTRAINT FK_DDAA1CDA4EC001D1 FOREIGN KEY (season_id) REFERENCES season (id)');
         $this->addSql('CREATE INDEX IDX_DDAA1CDA4EC001D1 ON episode (season_id)');
-        $this->addSql('ALTER TABLE season ADD program_id INT NOT NULL');
+        $this->addSql('ALTER TABLE season DROP FOREIGN KEY FK_F0E45BA9E12DEDA1');
+        $this->addSql('DROP INDEX IDX_F0E45BA9E12DEDA1 ON season');
+        $this->addSql('ALTER TABLE season CHANGE program_id_id program_id INT NOT NULL');
         $this->addSql('ALTER TABLE season ADD CONSTRAINT FK_F0E45BA93EB8070A FOREIGN KEY (program_id) REFERENCES program (id)');
         $this->addSql('CREATE INDEX IDX_F0E45BA93EB8070A ON season (program_id)');
     }

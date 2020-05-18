@@ -8,7 +8,7 @@
             <p>Categorie : {{ program.category.name }}</p>
             <h2>Saison {{ season.number }}</h2>
             {% for episode in episodes %}
-                <a href="#"><h3>Episode {{ episode.number }} : {{ episode.title }}</h3></a>
+                <a href= {{ path('show_episode', { id: episode.id }) }}><h3>Episode {{ episode.number }} : {{ episode.title }}</h3></a>
                 <br/>
             {% endfor %}
             <a href="{{ path('wild_index') }}">

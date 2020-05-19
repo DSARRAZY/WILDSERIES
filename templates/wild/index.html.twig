@@ -3,6 +3,13 @@
 {% block title %}All programs{% endblock %}
 
 {% block body %}
+
+    {% form_theme form 'bootstrap_4_layout.html.twig' %}
+    {{ form_start(form) }}
+    {{ form_row(form.searchField) }}
+    <button type="submit" name="btnSearch">Rechercher</button>
+    {{ form_end(form) }}
+
     <h1>Toutes les séries de la table program : </h1>
     {% for program in programs %}
         <div>
@@ -12,6 +19,7 @@
     {% else %}
         Aucune série trouvée.
     {% endfor %}
+
     <a href="{{ path('app_index') }}">
         Retour à l'accueil
     </a>

@@ -12,26 +12,5 @@
             </li>
         </ul>
     </div>
-    {#<div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav">
-            <li class="nav-item active">
-                <div class="dropdown">
-                    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                        Accèder à une série
-                        <span class="caret"></span>
-                    </button>
-                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                        {% for program in programs %}
-                            <div>
-                                <li><a href="/program/{programName}">{{ loop.index }} / {{ program.title }} - Catégorie : {{ program.category.name }}</a></li>
-                            </div>
-                        {% else %}
-                            Aucune série trouvée.
-                        {% endfor %}
-                    </ul>
-                </div>
-            </li>
-        </ul>
-    </div>#}
 </nav>
 </header>

@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ajouter une catégorie{% endblock %}
+
+{% block body %}
+    <p>Ajouter une catégorie</p>
+
+    {{ form_start(form) }}
+    {{ form_row(form.name) }}
+    <button class="btn">{{ button_label|default('Enregistrer') }}</button>
+    {{ form_end(form) }}
+
+    <h3>Toutes les catégories de la table "category" : </h3>
+    {% for category in categories %}
+        <div>
+            <h4>{{ loop.index }} / Catégorie : {{ category.name }}</h4>
+        </div>
+    {% else %}
+        Aucune série trouvée.
+    {% endfor %}
+
+    <a href="{{ path('app_index') }}">
+        <p>Retour à l'accueil</p>
+    </a>
+{% endblock %}

@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Wild Séries || Mise à jour du programme {{ program.title }}{% endblock %}
+
+{% block body %}
+    <section class="card text-dark m-3">
+        <div class="card-header bg-success">
+            <h1 class="mx-auto">Mise à jour de la série {{ program.title }}</h1>
+        </div>
+        <div class="col-sm-12 p-3">
+            {{ include('program/_form.html.twig', {'button_label': 'Update'}) }}
+        </div>
+    </section>
+    <a class="btn btn-dark" href="{{ path('program_index') }}">Retour aux séries</a>
+
+{% endblock %}

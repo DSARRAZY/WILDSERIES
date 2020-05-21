@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Wild Séries || {{ program.title }}{% endblock %}
+
+{% block body %}
+    <section class="card text-dark m-3">
+        <div class="card-header bg-success">
+            <h1 class="mx-auto">{{ program.title }}</h1>
+        </div>
+        <div class="media">
+            <img class="col-sm-12 col-md-6 p-3" src="{{ program.poster }}" alt="{{ program.title }} poster">
+            <div class="media-body col-sm-12 col-md-6 p-3">
+                <p>{{ program.summary }}</p>
+                <p>Catégorie : {{ program.category.name }}</p>
+                <table class="table table-light table-striped table-bordered mt-3">
+                <thead class="thead-dark">
+                <tr>
+                    <th>Saison</th>
+                    <th>année</th>
+                    <th>Voir</th>
+                    <th>Mettre à jour</th>
+                    <th>Supprimer</th>
+                </tr>
+                </thead>
+                    <tbody>
+                    {% for season in seasons %}
+                        <tr>
+                            <td>{{ season.number }}</td>
+                            <td>{{ season.year }}</td>
+                            <td>
+                                <a class="btn btn-success text-white" href="{{ path('season_show', {'id': season.id}) }}">Voir</a>
+                            </td>
+                            <td>
+                                <a class="btn btn-danger text-white" href="{{ path('season_edit', {'id': season.id}) }}">Mettre à jour</a>
+                            </td>
+                            <td>
+                                {{ include('season/_delete_form.html.twig') }}
+                            </td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td colspan="4">no records found</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+                <a class="btn btn-dark" href="{{ path('season_new') }}">Ajouter une saison</a>
+            </div>
+        </div>
+    </section>
+    <a class="btn btn-dark m-3" href="{{ path('program_index') }}">
+        Retour aux series
+    </a>
+{% endblock %}

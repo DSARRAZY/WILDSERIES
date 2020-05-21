@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Season index{% endblock %}
+
+{% block body %}
+    <section class="card text-dark m-3">
+        <div class="card-header bg-success">
+            <h1>Ajouter une saison :</h1>
+        </div>
+        <div class="media">
+            <a class="btn btn-danger text-white mx-auto m-3" href="{{ path('season_new') }}">Ajouter</a>
+        </div>
+    </section>
+
+    <section class="card text-dark m-3">
+        <div class="card-header bg-success">
+            <h1>Liste des saisons</h1>
+        </div>
+        <div class="media">
+            <table class="table table-light table-striped table-bordered mt-3">
+                <thead class="thead-dark">
+                <tr>
+                    <th>Programme</th>
+                    <th>Année</th>
+                    <th>Voir</th>
+                    <th>Modifier</th>
+                    <th>Supprimer</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for season in seasons %}
+                    <tr>
+                        <td>{{ season.program.title }}</td>
+                        <td>{{ season.year }}</td>
+                        <td>
+                            <a class="btn btn-success text-white" href="{{ path('season_show', {'id': season.id}) }}">Voir</a>
+                        </td>
+                        <td>
+                            <a class="btn btn-danger text-white" href="{{ path('season_edit', {'id': season.id}) }}">Mettre à jour</a>
+                        </td>
+                        <td>
+                            {{ include('season/_delete_form.html.twig') }}
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="4">no records found</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </section>
+{% endblock %}
+

@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Wild Séries || Mise à jour de la saison {{ season.id }}{% endblock %}
+
+{% block body %}
+    <section class="card text-dark m-3">
+        <div class="card-header bg-success">
+            <h1>Mise à jour de la saison {{ season.id }} de {{ season.program.title }}</h1>
+        </div>
+        <div class="p-3">
+            {{ include('season/_form.html.twig', {'button_label': 'Mettre à jour'}) }}
+        </div>
+    </section>
+    <a class="btn btn-dark" href="{{ path('program_show', {'id': program.id}) }}">Retour à la saison</a>
+{% endblock %}

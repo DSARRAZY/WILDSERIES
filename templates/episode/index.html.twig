@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Episode index{% endblock %}
+
+{% block body %}
+    <section class="card text-dark m-3">
+        <div class="card-header bg-success">
+            <h1>Ajouter un épisode :</h1>
+        </div>
+        <div class="media">
+            <a class="btn btn-danger text-white mx-auto m-3" href="{{ path('episode_new') }}">Ajouter</a>
+        </div>
+    </section>
+
+    <section class="card text-dark m-3">
+        <div class="card-header bg-success">
+            <h1>Liste des épisodes</h1>
+        </div>
+        <div class="media">
+            <table class="table table-light table-striped table-bordered mt-3">
+                <thead class="thead-dark">
+                <tr>
+                    <th>Programme</th>
+                    <th>Episode</th>
+                    <th>Titre</th>
+                    <th>Slug</th>
+                    <th>Voir</th>
+                    <th>Modifier</th>
+                    <th>Supprimer</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for episode in episodes %}
+                    <tr>
+                        <td>{{ episode.season.program.title }}</td>
+                        <td>{{ episode.number }}</td>
+                        <td>{{ episode.title }}</td>
+                        <td>{{ episode.id }}</td>
+                        <td>
+                            <a class="btn btn-success text-white" href="{{ path('episode_show', {'id': episode.id}) }}">Voir</a>
+                        </td>
+                        <td>
+                            <a class="btn btn-danger text-white" href="{{ path('episode_edit', {'id': episode.id}) }}">Mettre à jour</a>
+                        </td>
+                        <td>
+                            {{ include('episode/_delete_form.html.twig') }}
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="5">Aucun épisode de trouvé</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+{% endblock %}

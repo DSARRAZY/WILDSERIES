@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Episode{% endblock %}
+
+{% block body %}
+    <section class="card text-dark m-3">
+        <div class="card-header bg-success">
+            <h1>Episode {{ episode.title }}<br>Série {{ episode.season.program.title }}</h1>
+        </div>
+        <div class="media p-3">
+            <table class="table table-light table-striped table-bordered mt-3">
+                <tbody>
+                <tr>
+                    <th>Série</th>
+                    <td>{{ episode.season.program.title }}</td>
+                </tr>
+                <tr>
+                    <th>Titre</th>
+                    <td>{{ episode.title }}</td>
+                </tr>
+                <tr>
+                    <th>Numéro</th>
+                    <td>{{ episode.number }}</td>
+                </tr>
+                <tr>
+                    <th>Synopsis</th>
+                    <td>{{ episode.synopsis }}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+    <a class="btn btn-danger" href=javascript:history.go(-1)>Retour à la saison</a>
+
+{% endblock %}

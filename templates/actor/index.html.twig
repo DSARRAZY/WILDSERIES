@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des acteurs{% endblock %}
+
+{% block body %}
+<section class="card text-dark m-3">
+    <div class="card-header bg-success">
+        <h1>Ajouter un acteur</h1>
+    </div>
+    <div class="media">
+        <a class="btn btn-danger text-white mx-auto m-3" href="{{ path('actor_new') }}">Ajouter</a>
+    </div>
+</section>
+
+<section class="card text-dark m-3">
+    <div class="card-header bg-success">
+        <h1>Liste des acteurs</h1>
+    </div>
+    <div class="media">
+        <table class="table table-light table-striped table-bordered mt-3">
+            <thead class="thead-dark">
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Voir</th>
+                <th>Modifier</th>
+                <th>Supprimer</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for actor in actors %}
+            <tr>
+                <td>{{ actor.id }}</td>
+                <td>{{ actor.name }}</td>
+                <td>
+                    <a class="btn btn-success text-white" href="{{ path('actor_show', {'id': actor.id}) }}">Voir</a>
+                </td>
+                <td>
+                    <a class="btn btn-danger text-white" href="{{ path('actor_edit', {'id': actor.id}) }}">Mettre à jour</a>
+                </td>
+                <td>
+                    {{ include('actor/_delete_form.html.twig') }}
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">Aucun acteur trouvé</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+        </table>
+    </div>
+</section>
+{% endblock %}

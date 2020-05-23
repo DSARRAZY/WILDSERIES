@@ -44,6 +44,28 @@
                     {% endfor %}
                     </tbody>
                 </table>
+                <table class="table table-light table-striped table-bordered mt-3">
+                    <thead class="thead-dark">
+                    <tr>
+                        <th>Acteurs</th>
+                        <th>Voir</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for actor in program.actors %}
+                        <tr>
+                            <td>{{ actor.name }}</td>
+                            <td>
+                                <a class="btn btn-success text-white" href="{{ path('actor_show', {'id': actor.id}) }}">Voir</a>
+                            </td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td colspan="4">Pas d'acteur trouvé</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
                 <a class="btn btn-dark" href="{{ path('season_new') }}">Ajouter une saison</a>
             </div>
         </div>

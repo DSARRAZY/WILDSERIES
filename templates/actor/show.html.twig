@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Actor{% endblock %}
+
+{% block body %}
+<section class="card text-dark m-3">
+    <div class="card-header bg-success">
+        <h1>{{ actor.name }}</h1>
+    </div>
+    <div class="media">
+        <table class="table table-light table-striped table-bordered mt-3">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Nom de la série</th>
+                    <th>Voir</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for program in actor.programs %}
+                    <tr>
+                        <td>{{ program.title }}</td>
+                        <td>
+                            <a class="btn btn-success text-white" href="{{ path('program_show', {'id': program.id}) }}">Voir</a>
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="4">Pas d'acteur trouvé</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</section>
+    <a class="btn btn-danger" href=javascript:history.go(-1)>Retour</a>
+{% endblock %}

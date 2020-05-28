@@ -56,7 +56,7 @@
                         <tr>
                             <td>{{ actor.name }}</td>
                             <td>
-                                <a class="btn btn-success text-white" href="{{ path('actor_show', {'id': actor.id}) }}">Voir</a>
+                                <a class="btn btn-success text-white" href="{{ path('actor_show', {'slug': actor.slug}) }}">Voir</a>
                             </td>
                         </tr>
                     {% else %}

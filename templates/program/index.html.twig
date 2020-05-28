@@ -33,10 +33,10 @@
                         <td>{{ program.title }}</td>
                         <td>{{ program.category.name }}</td>
                         <td>
-                            <a class="btn btn-success text-white" href="{{ path('program_show', {'id': program.id}) }}">Voir</a>
+                            <a class="btn btn-success text-white" href="{{ path('program_show', {'slug': program.slug}) }}">Voir</a>
                         </td>
                         <td>
-                            <a class="btn btn-danger text-white" href="{{ path('program_edit', {'id': program.id}) }}">Mettre à jour</a>
+                            <a class="btn btn-danger text-white" href="{{ path('program_edit', {'slug': program.slug}) }}">Mettre à jour</a>
                         </td>
                         <td>
                             {{ include('program/_delete_form.html.twig') }}

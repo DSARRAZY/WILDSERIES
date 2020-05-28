@@ -29,7 +29,7 @@
             <a class="btn btn-danger" href="{{ path('season_edit', {'id': season.id}) }}">Mise à jour</a>
         </div>
     </section>
-    <a class="btn btn-dark" href="{{ path('program_show',{'id': program.id}) }}">Retour à la série</a>
+    <a class="btn btn-dark" href="{{ path('program_show',{'slug': program.slug}) }}">Retour à la série</a>
 
     <section class="card text-dark m-3">
         <div class="card-header bg-success">
@@ -54,10 +54,10 @@
                         <td>{{ episode.number }}</td>
                         <td>{{ episode.title }}</td>
                         <td>
-                            <a class="btn btn-success text-white" href="{{ path('episode_show', {'id': episode.id}) }}">Voir</a>
+                            <a class="btn btn-success text-white" href="{{ path('episode_show', {'slug': episode.slug}) }}">Voir</a>
                         </td>
                         <td>
-                            <a class="btn btn-danger text-white" href="{{ path('episode_edit', {'id': episode.id}) }}">Mettre à jour</a>
+                            <a class="btn btn-danger text-white" href="{{ path('episode_edit', {'slug': episode.slug}) }}">Mettre à jour</a>
                         </td>
                         <td>
                             {{ include('episode/_delete_form.html.twig') }}

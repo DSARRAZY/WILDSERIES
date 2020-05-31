@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <style type="text/css">
+        body {
+            background-color: black;
+            color:blue;
+            font-family: Verdana, sans-serif;
+        }
+    </style>
+    <title>{% block title %}Contact{% endblock %}</title>
+</head>
+<body style="min-width: 450px; max-width: 768px;">
+<div class="container">
+    <div style="background-color: #0D99CE; color:black;">
+        <h1 style="font-family: 'Verdana', sans-serif;">Wild Séries</h1>
+    </div>
+    <div class="nav">
+        <h3 style="font-family: 'Verdana', sans-serif;">La série {{ program }} a été créée !</h3>
+        <p style="font-family: 'Verdana', sans-serif;">Vous recevez cet email en tant qu’administrateur du site Wild-Séries pour vous prévenir de la création
+            d’une nouvelle série dans la base de données.</p>
+        <p><a href='http://127.0.0.1:8000/program/{{slug}}'>voir la fiche de la série</a></p>
+    </div>
+</div>
+</body>
+</html>

@@ -11,12 +11,15 @@ use App\Entity\Episode;
 use Symfony\Component\HttpFoundation\Request;
 use App\Form\CategoryType;
 use App\Repository\CategoryRepository;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+
 
 class CategoryController extends AbstractController
 {
 
     /**
      * @Route("/category/add", name="category_add")
+     * @IsGranted("ROLE_ADMIN")
      */
     public function add (Request $request) : Response
     {

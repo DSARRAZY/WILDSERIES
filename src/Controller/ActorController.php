@@ -10,6 +10,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 /**
  * @Route("/actor")
@@ -28,6 +29,7 @@ class ActorController extends AbstractController
 
     /**
      * @Route("/new", name="actor_new", methods={"GET","POST"})
+     * @IsGranted("ROLE_ADMIN")
      */
     public function new(Request $request, Slugify $slugify): Response
     {
@@ -67,6 +69,7 @@ class ActorController extends AbstractController
 
     /**
      * @Route("/{slug}/edit", name="actor_edit", methods={"GET","POST"})
+     * @IsGranted("ROLE_ADMIN")
      */
     public function edit(Request $request, Actor $actor, Slugify $slugify): Response
     {
@@ -89,6 +92,7 @@ class ActorController extends AbstractController
 
     /**
      * @Route("/{id}", name="actor_delete", methods={"DELETE"})
+     * @IsGranted("ROLE_ADMIN")
      */
     public function delete(Request $request, Actor $actor): Response
     {

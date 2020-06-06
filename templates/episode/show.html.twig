@@ -41,30 +41,35 @@
                     <tr>
                         <th>Commentaire</th>
                         <th>Note</th>
+                        <th>Auteur</th>
+                        <th>Supprimer</th>
                     </tr>
                     </thead>
-            <tbody>
-            {% for comments in episode.comments %}
-            <tr>
-                <td>{{ comments.comment }}</td>
-                <td>{{ comments.rate }}</td>
-            </tr>
-            {% else %}
-                <tr>
-                    <td colspan="4">no records found</td>
-                </tr>
-            {% endfor %}
-            </tbody>
-        </table>
-    </div>
+                    <tbody>
+                        {% for comments in episode.comments %}
+                    <tr>
+                        <td>{{ comments.comment }}</td>
+                        <td>{{ comments.rate }}</td>
+                        <td>{{ comments.author.email}}</td>
+                        <td>
+                            {% if app.user.id is defined and (app.user.id == comments.author.id or is_granted('ROLE_ADMIN')) %}
+                            <a class="btn btn-danger text-white" href="{{ path('comment_delete', {'id': comments.id}) }}">Supprimer</a>
+                            {% endif %}
+                        </td>
+                    </tr>
+                        {% else %}
+                            <tr>
+                                <td colspan="4">no records found</td>
+                            </tr>
+                        {% endfor %}
+                </tbody>
+            </table>
+            </div>
+        </div>
 </section>
-
     {% if app.user %}
         <p>Ajouter un commentaire : </p>
         {{ include('comment/_form.html.twig') }}
-    {% else %}
-    {% endif %}
-
     <a class="btn btn-danger" href=javascript:history.go(-1)>Retour à la saison</a>
-
+    {% endif %}
 {% endblock %}

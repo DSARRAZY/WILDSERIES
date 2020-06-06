@@ -10,4 +10,5 @@ QUETE 15 : https://www.loom.com/share/1e066d7c3226477b8b6ee339f2048c1b
 QUETE 16 : https://www.loom.com/share/0c032a171c4b4910844952e101929a35  
 QUETE 17 : https://www.loom.com/share/3635a5e4f16d4b30bc20457a660ca60b  
 QUETE 18 : https://www.loom.com/share/af29a8922eb84b528a0efc35468d5f87  
-QUETE 19 : https://www.loom.com/share/c9c9ef5f8d9548e79e0a7e2a7a06acf3
+QUETE 19 : https://www.loom.com/share/c9c9ef5f8d9548e79e0a7e2a7a06acf3  
+QUETE 20 : https://www.loom.com/share/66d9ab3b6974419787b46cdc75869c54

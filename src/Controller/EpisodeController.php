@@ -17,6 +17,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 /**
  * @Route("/episode")
@@ -35,6 +36,7 @@ class EpisodeController extends AbstractController
 
     /**
      * @Route("/new", name="episode_new", methods={"GET","POST"})
+     * @IsGranted("ROLE_ADMIN")
      */
     public function new(Request $request, Slugify $slugify): Response
     {
@@ -69,8 +71,12 @@ class EpisodeController extends AbstractController
      * @param UserInterface $user
      * @return Response
      */
-    public function show(Request $request, Episode $episode, ?UserInterface $author): Response
+    public function show(Request $request, Episode $episode, ?UserInterface $author, CommentRepository $commentRepository): Response
     {
+        $comments = $commentRepository->findBy(
+            ['episode' => $episode]
+        );
+
         $comment = new Comment();
         $comment->setEpisode($episode);
         $comment->setAuthor($author);
@@ -85,12 +91,14 @@ class EpisodeController extends AbstractController
 
         return $this->render('episode/show.html.twig', [
             'episode' => $episode,
+            'comments' => $comments,
             'form' => $form->createView(),
         ]);
     }
 
     /**
      * @Route("/{slug}/edit", name="episode_edit", methods={"GET","POST"})
+     * @IsGranted("ROLE_ADMIN")
      */
     public function edit(Request $request, Episode $episode, Slugify $slugify): Response
     {
@@ -113,6 +121,7 @@ class EpisodeController extends AbstractController
 
     /**
      * @Route("/{id}", name="episode_delete", methods={"DELETE"})
+     * @IsGranted("ROLE_ADMIN")
      */
     public function delete(Request $request, Episode $episode): Response
     {

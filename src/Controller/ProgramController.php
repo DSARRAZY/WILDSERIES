@@ -62,6 +62,9 @@ class ProgramController extends AbstractController
 
             $mailer->send($email);
 
+            // Once the form is submitted, valid and the data inserted in database, you can define the success flash message
+            $this->addFlash('success', 'The new program has been created');
+
             return $this->redirectToRoute('program_index');
         }
 
@@ -98,6 +101,8 @@ class ProgramController extends AbstractController
             $program->setSlug($slugify->generate($program->getTitle()));
             $this->getDoctrine()->getManager()->flush();
 
+            $this->addFlash('success', 'La série a bien été modifiée');
+
             return $this->redirectToRoute('program_index');
         }
 
@@ -118,6 +123,8 @@ class ProgramController extends AbstractController
             $entityManager->remove($program);
             $entityManager->flush();
         }
+
+        $this->addFlash('danger', 'La série a bien été supprimée');
 
         return $this->redirectToRoute('program_index');
     }

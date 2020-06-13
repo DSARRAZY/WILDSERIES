@@ -4,9 +4,4 @@ index:
     path: /
     controller: App\Controller\DefaultController::index
 
-# the "wild_index" route name is not important yet
-wild_show_index:
-    path: /wild/
-    controller: App\Controller\WildController::index
-
 

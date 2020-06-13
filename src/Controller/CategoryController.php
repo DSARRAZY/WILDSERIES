@@ -13,7 +13,6 @@ use App\Form\CategoryType;
 use App\Repository\CategoryRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
-
 class CategoryController extends AbstractController
 {
 
@@ -47,5 +46,28 @@ class CategoryController extends AbstractController
         ]);
     }
 
+    public function allCategories(CategoryRepository $categoryRepository)
+    {
+        $categories = $categoryRepository->findBy(
+            [],
+            ['name' => 'DESC']
 
+        );
+
+        return $this->render('_categories.html.twig', [
+            'categories' => $categories,
+        ]);
+    }
+
+    /**
+     * @Route("/category/{id}", name="category_show", requirements={"id":"\d+"},methods={"GET"})
+     * @param Category $category
+     * @return Response
+     */
+    public function show(Category $category): Response
+    {
+        return $this->render('category/show.html.twig', [
+            'category' => $category,
+        ]);
+    }
 }

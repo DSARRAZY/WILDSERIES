@@ -49,7 +49,7 @@ Class WildController extends AbstractController
      * Getting a program with a formatted slug for title
      *
      * @param string $slug The slugger
-     * @Route("/show/{slug<^[a-z0-9-]+$>}", defaults={"slug" = null}, name="wild_show")
+     * @Route("/show/{slug}", defaults={"slug" = null}, name="wild_show")
      * @return Response
      */
     public function show(?string $slug):Response
@@ -77,11 +77,12 @@ Class WildController extends AbstractController
         ]);
     }
 
+    /*
     /**
      * @param string $categoryName
      * @Route("/category/{categoryName}", name="show_category")
      * @return Response
-     */
+     *//*
     public function showByCategory(string $categoryName) :Response
     {
         if (!$categoryName) {
@@ -93,7 +94,7 @@ Class WildController extends AbstractController
 
         $programs = $this->getDoctrine()
             ->getRepository(Program::class)
-            ->findBy(['category' => $category], ['id' => 'desc'], 3);
+            ->findBy(['category' => $category]);
 
         if (!$programs) {
             throw $this->createNotFoundException(
@@ -105,7 +106,7 @@ Class WildController extends AbstractController
             'programs' => $programs,
             'category' => $category,
         ]);
-    }
+    }*/
 
     /**
      * @Route("/program/{programName<^[a-z0-9-]+$>}", defaults={"programName" = null}, name="show_program")

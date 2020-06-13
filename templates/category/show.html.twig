@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ category.name }}{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h2>Catégorie: {{ category.name }}</h2>
+        <h3>Les séries</h3>
+        {% for program in category.programs %}
+            <li><a href="{{ path('program_show', { 'slug': program.slug }) }}">{{ program.title }} </a></li>
+        {% else %}
+            <li>Aucune série dans cette catégorie</li>
+        {% endfor %}
+    </div>
+{% endblock %}
